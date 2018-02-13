@@ -1,0 +1,16 @@
+<div class="ngx-autocomplete">
+  <input type="{{type}}"
+         placeholder="{{placeholder}}"
+         (keyup)="onChange($event, input.value)"
+         autocomplete="off"
+         #input/>
+  <div class="ngx-autocomplete-suggestions" *ngIf="(suggestions$ | async)?.length > 0">
+      <ul class="ngx-autocomplete-suggestions-list">
+        <li class="ngx-autocomplete-suggestions-list-item" 
+            *ngFor="let suggestion of suggestions$ | async" 
+            (click)="fillTextBox(suggestion.name)">
+            {{suggestion.name}}
+        </li>
+      </ul>
+    </div>
+</div>

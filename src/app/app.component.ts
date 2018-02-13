@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,19 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'app';
+
+  form: FormGroup;
+
+  constructor(
+    private formBuilder: FormBuilder
+  ) {
+    this.createForm();
+  }
+
+  createForm() {
+    this.form = this.formBuilder.group({
+      keyword: ''
+       });
+  }
+
 }
