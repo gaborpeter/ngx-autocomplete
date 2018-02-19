@@ -17,6 +17,8 @@ export class NgxAutocompleteComponent implements OnInit, ControlValueAccessor, A
 
   @Input() type: string = 'text';
   @Input() placeholder: string;
+  @Input() apiString: string;
+  @Input() paramName: string;
   @Input() control: FormControl = new FormControl();
   @ViewChild('input') inputRef: ElementRef;
   private innerValue: string = '';
@@ -73,7 +75,7 @@ export class NgxAutocompleteComponent implements OnInit, ControlValueAccessor, A
     );
     this.suggestions$ = this.control.valueChanges
       .debounceTime(500)
-      .switchMap((fieldValue: string) => this.ngxAutocompleteService.getSuggestons(this.doQuery, fieldValue))
+      .switchMap((fieldValue: string) => this.ngxAutocompleteService.getSuggestons(this.doQuery, fieldValue, this.apiString, this.paramName))
       .publishReplay(1).refCount();
   }
 

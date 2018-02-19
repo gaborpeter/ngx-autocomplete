@@ -1,5 +1,7 @@
 <form [formGroup]="form">
   <ngx-autocomplete formControlName="keyword"
-                  [control]="form.controls.keyword"></ngx-autocomplete>
+                    [control]="form.controls.keyword"
+                    apiString="http://localhost:3000/api/ascent/queryascents"
+                    paramName="keyword"></ngx-autocomplete>
 </form>
 

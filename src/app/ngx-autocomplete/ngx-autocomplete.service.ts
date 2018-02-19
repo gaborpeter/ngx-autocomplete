@@ -10,19 +10,17 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 @Injectable()
 export class NgxAutocompleteService {
 
-    keyword: string;
     private subject = new BehaviorSubject([]);
     suggestions$: Observable<any[]> = this.subject.asObservable();
 
     constructor(private http: HttpClient) { }
 
-    getSuggestons(doQuery: boolean, keyword: string): Observable<any[]> {
-        this.keyword = keyword;
+    getSuggestons(doQuery: boolean, keyword: string, apiString: string, paramName: string): Observable<any[]> {
         if (doQuery) {
           if (keyword.length === 0 || keyword == '') {
             return Observable.of([]);
           } else {
-                return this.http.get(`http://localhost:3000/api/ascent/queryascents?keyword=${keyword}`)
+                return this.http.get(apiString, { params: { [paramName]: keyword } })
                     .map((res: any) => res.payload)
                     .do((crags: any[]) => this.subject.next(crags));
           }
@@ -32,3 +30,11 @@ export class NgxAutocompleteService {
     }
 
 }
+
+
+ /**
+ * To be added:
+ * Static array support
+ * Highlight matches
+ * Keyboard support
+ */
