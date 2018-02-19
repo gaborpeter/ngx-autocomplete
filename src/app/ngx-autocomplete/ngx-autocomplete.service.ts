@@ -22,7 +22,7 @@ export class NgxAutocompleteService {
           if (keyword.length === 0 || keyword == '') {
             return Observable.of([]);
           } else {
-                return this.http.get(`http://localhost:3000/api/ascent/ascents/${keyword}`)
+                return this.http.get(`http://localhost:3000/api/ascent/queryascents?keyword=${keyword}`)
                     .map((res: any) => res.payload)
                     .do((crags: any[]) => this.subject.next(crags));
           }

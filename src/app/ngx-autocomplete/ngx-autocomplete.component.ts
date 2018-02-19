@@ -6,7 +6,7 @@ import { NgxAutocompleteService } from './ngx-autocomplete.service';
 @Component({
   selector: 'ngx-autocomplete',
   templateUrl: './ngx-autocomplete.component.html',
-  styleUrls: ['./ngx-autocomplete.component.css'],
+  styleUrls: ['./ngx-autocomplete.component.scss'],
   providers: [{
     provide: NG_VALUE_ACCESSOR,
     useExisting: forwardRef(() => NgxAutocompleteComponent),
