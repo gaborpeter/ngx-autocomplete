@@ -2,6 +2,8 @@
   <ngx-autocomplete formControlName="keyword"
                     [control]="form.controls.keyword"
                     apiString="http://localhost:3000/api/ascent/queryascents"
-                    paramName="keyword"></ngx-autocomplete>
+                    paramName="keyword"
+                    payloadPropName="payload"
+                    suggestionPropName="name"></ngx-autocomplete>
 </form>
 

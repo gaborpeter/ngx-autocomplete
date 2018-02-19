@@ -15,14 +15,24 @@ export class NgxAutocompleteService {
 
     constructor(private http: HttpClient) { }
 
-    getSuggestons(doQuery: boolean, keyword: string, apiString: string, paramName: string): Observable<any[]> {
+    getSuggestons(doQuery: boolean,
+                  keyword: string,
+                  apiString: string,
+                  paramName: string,
+                  payloadPropName?: string): Observable<any[]> {
         if (doQuery) {
           if (keyword.length === 0 || keyword == '') {
             return Observable.of([]);
           } else {
                 return this.http.get(apiString, { params: { [paramName]: keyword } })
-                    .map((res: any) => res.payload)
-                    .do((crags: any[]) => this.subject.next(crags));
+                    .map((response: any) => {
+                      if (payloadPropName !== null) {
+                        return response[payloadPropName];
+                      } else {
+                        return response;
+                      }
+                    })
+                    .do((response: any[]) => this.subject.next(response));
           }
         } else {
           return Observable.of([]);

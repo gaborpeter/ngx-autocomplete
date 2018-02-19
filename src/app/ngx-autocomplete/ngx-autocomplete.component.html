@@ -5,12 +5,22 @@
          autocomplete="off"
          #input/>
   <div class="ngx-autocomplete-suggestions" *ngIf="(suggestions$ | async)?.length > 0">
-      <ul class="ngx-autocomplete-suggestions-list">
+      <ul *ngIf="suggestionPropName; else default" class="ngx-autocomplete-suggestions-list">
         <li class="ngx-autocomplete-suggestions-list-item" 
             *ngFor="let suggestion of suggestions$ | async" 
-            (click)="fillTextBox(suggestion.name)">
-            {{suggestion.name}}
+            (click)="fillTextBox(suggestion[suggestionPropName])">
+            {{suggestion[suggestionPropName]}}
         </li>
       </ul>
     </div>
 </div>
+
+<ng-template #default>
+  <ul class="ngx-autocomplete-suggestions-list">
+      <li class="ngx-autocomplete-suggestions-list-item" 
+          *ngFor="let suggestion of suggestions$ | async" 
+          (click)="fillTextBox(suggestion)">
+          {{suggestion}}
+      </li>
+  </ul>
+</ng-template>
