@@ -64,11 +64,18 @@ export class NgxAutocompleteComponent implements OnInit, ControlValueAccessor, A
     this.propagateChange(value);
   }
 
+  getClass(value: string, style: string): string {
+    if (value == this.control.value) {
+      return `highlighted ${style}`;
+    } else {
+      return style;
+    }
+  }
+
   ngAfterViewInit(){ }
 
   ngOnInit() {
     this.control.valueChanges.subscribe((changes) => {
-        console.log(changes);
         if (this.control.value == '' || this.control.value == null || this.control.value == undefined) {
             this.innerValue = '';      
             this.inputRef.nativeElement.value = '';
@@ -77,7 +84,7 @@ export class NgxAutocompleteComponent implements OnInit, ControlValueAccessor, A
     );
     this.suggestions$ = this.control.valueChanges
       .debounceTime(500)
-      .switchMap((fieldValue: string) => this.ngxAutocompleteService.getSuggestons(this.doQuery, fieldValue, this.apiString, this.paramName, this.payloadPropName || null))
+      .switchMap((fieldValue: string) => this.ngxAutocompleteService.getSuggestons(this.doQuery, fieldValue, this.apiString, this.paramName, this.payloadPropName || null, this.suggestionPropName || null))
       .publishReplay(1).refCount();
   }
 

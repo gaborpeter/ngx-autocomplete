@@ -1,26 +1,16 @@
 <div class="ngx-autocomplete">
   <input type="{{type}}"
-         placeholder="{{placeholder}}"
-         (keyup)="onChange($event, input.value)"
-         autocomplete="off"
-         #input/>
+          placeholder="{{placeholder}}"
+          (keyup)="onChange($event, input.value)"
+          autocomplete="off"
+          #input/>
   <div class="ngx-autocomplete-suggestions" *ngIf="(suggestions$ | async)?.length > 0">
-      <ul *ngIf="suggestionPropName; else default" class="ngx-autocomplete-suggestions-list">
+      <ul class="ngx-autocomplete-suggestions-list">
         <li class="ngx-autocomplete-suggestions-list-item" 
             *ngFor="let suggestion of suggestions$ | async" 
-            (click)="fillTextBox(suggestion[suggestionPropName])">
-            {{suggestion[suggestionPropName]}}
+            (click)="fillTextBox(suggestion)">
+            <span [ngClass]="getClass(elem[1].value, elem[1].class)" *ngFor="let elem of suggestion">{{elem[1].value}}</span>
         </li>
       </ul>
     </div>
 </div>
-
-<ng-template #default>
-  <ul class="ngx-autocomplete-suggestions-list">
-      <li class="ngx-autocomplete-suggestions-list-item" 
-          *ngFor="let suggestion of suggestions$ | async" 
-          (click)="fillTextBox(suggestion)">
-          {{suggestion}}
-      </li>
-  </ul>
-</ng-template>
