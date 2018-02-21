@@ -71,11 +71,3 @@ export class NgxAutocompleteService {
     }
 
 }
-
-
- /**
- * To be added:
- * 
- * Static array support
- * Keyboard support
- */
