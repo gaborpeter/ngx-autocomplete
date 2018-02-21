@@ -78,5 +78,4 @@ export class NgxAutocompleteService {
  * 
  * Static array support
  * Keyboard support
- * Style support
  */
