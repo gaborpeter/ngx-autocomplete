@@ -8,8 +8,8 @@
       <ul class="ngx-autocomplete-suggestions-list">
         <li class="ngx-autocomplete-suggestions-list-item" 
             *ngFor="let suggestion of suggestions$ | async" 
-            (click)="fillTextBox(suggestion)">
-            <span [ngClass]="getClass(elem[1].value, elem[1].class)" *ngFor="let elem of suggestion">{{elem[1].value}}</span>
+            (click)="fillTextBox(suggestion.full)">
+            <span [ngClass]="getClass(elem[1].value, elem[1].class)" *ngFor="let elem of suggestion.splitted">{{elem[1].value}}</span>
         </li>
       </ul>
     </div>

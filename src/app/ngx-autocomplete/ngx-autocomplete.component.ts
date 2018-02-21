@@ -65,7 +65,7 @@ export class NgxAutocompleteComponent implements OnInit, ControlValueAccessor, A
   }
 
   getClass(value: string, style: string): string {
-    if (value == this.control.value) {
+    if (value.toLowerCase() == this.control.value.toLowerCase()) {
       return `highlighted ${style}`;
     } else {
       return style;

@@ -6,7 +6,7 @@ import 'rxjs/add/observable/throw';
 import 'rxjs/add/observable/of';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { clone, pull } from 'lodash';
+import { pull } from 'lodash';
 
 @Injectable()
 export class NgxAutocompleteService {
@@ -18,12 +18,11 @@ export class NgxAutocompleteService {
     constructor(private http: HttpClient) { }
 
     highlightMatches = (finding: string): any => {
-      const splitted = finding.split(this.keyword);
-      console.log(splitted);
-      const cloned = clone(splitted);
+      const matched = finding.match(new RegExp(this.keyword, "gi"));
+      const splitted = finding.split(new RegExp(this.keyword, "i"));
       let position = 1;
-      for (let i = 0; i < cloned.length - 1; i++) {
-        splitted.splice(position, 0, this.keyword);
+      for (let i = 0; i < matched.length; i++) {
+        splitted.splice(position, 0, matched[i]);
         position = position + 2;
       }
       pull(splitted, '');
@@ -31,7 +30,10 @@ export class NgxAutocompleteService {
       splitted.forEach(function(string, index){
         splittedObj[index] = {value: string, class: string.indexOf(' ') === 0 ? 'inline' : 'inline-block'};
       });
-      return Object.entries(splittedObj);
+      let suggestion: any = {};
+      suggestion.full = finding;
+      suggestion.splitted = Object.entries(splittedObj);
+      return suggestion;
     }
 
     getSuggestons(doQuery: boolean,
@@ -75,7 +77,6 @@ export class NgxAutocompleteService {
  * To be added:
  * 
  * Static array support
- * Add case insensitivity
  * Keyboard support
  * Style support
  */
