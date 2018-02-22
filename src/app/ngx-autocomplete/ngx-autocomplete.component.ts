@@ -21,6 +21,7 @@ export class NgxAutocompleteComponent implements OnInit, ControlValueAccessor, A
   @Input() paramName: string;
   @Input() payloadPropName: string;
   @Input() suggestionPropName: string;
+  @Input() staticDataSource: any[];
   @Input() control: FormControl = new FormControl();
   @ViewChild('input') inputRef: ElementRef;
   private innerValue: string = '';
@@ -82,10 +83,20 @@ export class NgxAutocompleteComponent implements OnInit, ControlValueAccessor, A
         } 
       }
     );
-    this.suggestions$ = this.control.valueChanges
-      .debounceTime(500)
-      .switchMap((fieldValue: string) => this.ngxAutocompleteService.getSuggestons(this.doQuery, fieldValue, this.apiString, this.paramName, this.payloadPropName || null, this.suggestionPropName || null))
-      .publishReplay(1).refCount();
+    if (this.apiString && this.paramName && !this.staticDataSource) {
+      this.suggestions$ = this.control.valueChanges
+        .debounceTime(500)
+        .switchMap((fieldValue: string) => this.ngxAutocompleteService.getSuggestonsfromApi(this.doQuery, fieldValue, this.apiString, this.paramName, this.payloadPropName || null, this.suggestionPropName || null))
+        .publishReplay(1).refCount();
+    } else if (!this.apiString && !this.paramName && this.staticDataSource) {
+      this.suggestions$ = this.control.valueChanges
+        .debounceTime(500)
+        .switchMap((fieldValue: string) => this.ngxAutocompleteService.getSuggestonsfromStaticDataSource(this.doQuery, fieldValue, this.staticDataSource, this.suggestionPropName || null))
+        .publishReplay(1).refCount();
+    } else {
+      console.error('Either static data source or API URL needs to be provided!');
+    }
+
   }
 
 }

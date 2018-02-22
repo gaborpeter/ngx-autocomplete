@@ -6,7 +6,7 @@ import 'rxjs/add/observable/throw';
 import 'rxjs/add/observable/of';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { pull } from 'lodash';
+import { pull, forEach, isString } from 'lodash';
 
 @Injectable()
 export class NgxAutocompleteService {
@@ -36,12 +36,50 @@ export class NgxAutocompleteService {
       return suggestion;
     }
 
-    getSuggestons(doQuery: boolean,
-                  keyword: string,
-                  apiString: string,
-                  paramName: string,
-                  payloadPropName?: string,
-                  suggestionPropName? : string): Observable<any[]> {
+    getSuggestonsfromStaticDataSource(doQuery: boolean,
+                                      keyword: string,
+                                      staticDataSource: any[],
+                                      suggestionPropName? : string): Observable<any[]> {
+      this.keyword = keyword;
+      if (doQuery) {
+        if (!/\S/.test(keyword)) {
+          return Observable.of([]);
+        } else {
+          const output = [];
+          let staticDataSourceMapped = [];
+          if (suggestionPropName) {
+            staticDataSourceMapped = staticDataSource.map(element => element[suggestionPropName]);
+          } else {
+            staticDataSourceMapped = staticDataSource;
+          }
+          if (staticDataSourceMapped.length > 0 && isString(staticDataSourceMapped[0])) {
+            forEach(staticDataSourceMapped, (element) => {
+              if (element.toLowerCase().indexOf(keyword.toLowerCase()) !== -1) {
+                output.push(element);
+              }
+            });
+          } else {
+            console.error('Please provide with suggestionPropName!');
+            return Observable.of([]);
+          }
+          if (output.length > 0) {
+            const outputHighlighted = output.map(this.highlightMatches);
+            return Observable.of(outputHighlighted).do((response: any[]) => this.subject.next(response));
+          } else {
+            return Observable.of([]);
+          }
+        }
+      } else {
+        return Observable.of([]);
+      } 
+    }
+
+    getSuggestonsfromApi(doQuery: boolean,
+                        keyword: string,
+                        apiString: string,
+                        paramName: string,
+                        payloadPropName?: string,
+                        suggestionPropName? : string): Observable<any[]> {
         this.keyword = keyword;
         if (doQuery) {
           if (!/\S/.test(keyword)) {

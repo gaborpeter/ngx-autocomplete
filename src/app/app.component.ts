@@ -9,6 +9,17 @@ import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
 export class AppComponent {
 
   form: FormGroup;
+  weekdays: any[] = [
+    {
+      name: 'Monday'
+    },
+    {
+      name: 'Tuesday'
+    },
+    {
+      name: 'wednesday'
+    }
+  ];
 
   constructor(
     private formBuilder: FormBuilder
