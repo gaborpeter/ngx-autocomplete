@@ -4,12 +4,12 @@ Warning: This project is under development so is not ready for production.
 
 ## Feautures
 
-HTTPClient support
-Reactive form support
-Static array and API call support
-Highlight matches (case insensitive)
-Keyboard support
-AOT compatible
+HTTPClient support.
+Reactive form support.
+Static array and API call support.
+Highlight matches (case insensitive).
+Keyboard support.
+AOT compatible.
 
 ## Installation
 ```
@@ -57,6 +57,8 @@ import { HttpClientModule } from '@angular/common/http';
 export class AppModule { }
 ```
 
+Then create a reactive form:
+
 ```typescript
 import { Component } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
@@ -91,7 +93,8 @@ export class AppComponent {
 }
 ```
 
-with static array source:
+Add seletor with static array source:
+
 ```html
 <form [formGroup]="myForm">
   <ngx-autocomplete formControlName="keyword"
@@ -101,7 +104,8 @@ with static array source:
 </form>
 ```
 
-with API call:
+Add seletor with API call:
+
 ```html
 
 <form [formGroup]="myForm">
