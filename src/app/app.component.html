@@ -11,6 +11,7 @@
   <ngx-autocomplete formControlName="keyword"
                     [control]="form.controls.keyword"
                     [staticDataSource]="weekdays"
-                    suggestionPropName="name"></ngx-autocomplete>
+                    suggestionPropName="name"
+                    (selected)="onSelected($event)"></ngx-autocomplete>
 </form>
 

@@ -27,6 +27,10 @@ export class AppComponent {
     this.createForm();
   }
 
+  onSelected(data) {
+    console.log(data);
+  }
+
   createForm() {
     this.form = this.formBuilder.group({
       keyword: ''

@@ -1,4 +1,12 @@
-import { Component, OnInit, forwardRef, Input, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
+import { Component,
+         OnInit,
+         forwardRef,
+         Input,
+         AfterViewInit,
+         ViewChild,
+         ElementRef,
+         Output,
+         EventEmitter } from '@angular/core';
 import { NG_VALUE_ACCESSOR, FormControl, ControlValueAccessor } from '@angular/forms';
 import { Observable } from 'rxjs/Observable';
 import { NgxAutocompleteService } from './ngx-autocomplete.service';
@@ -27,6 +35,7 @@ export class NgxAutocompleteComponent implements OnInit, ControlValueAccessor, A
   private innerValue: string = '';
   private doQuery: boolean = true;
   suggestions$: Observable<any[]>;
+  @Output() selected = new EventEmitter<string>();
 
   constructor(private ngxAutocompleteService: NgxAutocompleteService) { }
 
@@ -63,6 +72,7 @@ export class NgxAutocompleteComponent implements OnInit, ControlValueAccessor, A
     this.inputRef.nativeElement.value = value;
     this.innerValue = value;
     this.propagateChange(value);
+    this.selected.emit(value);
   }
 
   getClass(value: string, style: string): string {
