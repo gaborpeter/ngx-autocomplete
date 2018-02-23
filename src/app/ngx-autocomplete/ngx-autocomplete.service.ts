@@ -32,7 +32,7 @@ export class NgxAutocompleteService {
       });
       let suggestion: any = {};
       suggestion.full = finding;
-      suggestion.splitted = Object.entries(splittedObj);
+      suggestion.splitted = (<any>Object).entries(splittedObj);
       return suggestion;
     }
 
