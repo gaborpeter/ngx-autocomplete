@@ -1,6 +1,6 @@
 {
   "name": "@avas/ngx-autocomplete",
-  "version": "0.1.2",
+  "version": "0.1.4",
   "license": "MIT",
   "description": "Autocomplete component for Angular4+",
   "scripts": {
@@ -11,7 +11,7 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "packagr": "ng-packagr -p ng-package.json",
-    "publish": "npm publish --access=public ./dist"
+    "publish": "npm publish --access=public"
   },
   "author": "Arpad Vas",
   "repository": {

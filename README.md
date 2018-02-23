@@ -27,7 +27,7 @@ npm install @avas/ngx-autocomplete --save
 * **staticDataSource**<_any[]_> - Array of string or objects. If second then suggestionPropName must be provided.
 * **control**<FormControl> - The ngx-autocomplete selector must be part of a reactive form.
 
-## Inputs
+## Outputs
 
 * **selected**<_string_> - Emits an event once the item is selected.
 
