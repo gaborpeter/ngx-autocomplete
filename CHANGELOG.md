@@ -1,3 +1,6 @@
+## v 0.1.2 (2018/02/23)
+* Update package.json
+
 ## v 0.1.1 (2018/02/23)
 * Add change log
 

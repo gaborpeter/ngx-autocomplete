@@ -1,7 +1,8 @@
 {
   "name": "@avas/ngx-autocomplete",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "license": "MIT",
+  "description": "Autocomplete component for Angular4+",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -9,8 +10,26 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "packagr": "ng-packagr -p ng-package.json"
+    "packagr": "ng-packagr -p ng-package.json",
+    "publish": "npm publish --access=public ./dist"
   },
+  "author": "Arpad Vas",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/arpadvas/ngx-autocomplete.git"
+  },
+  "bugs": {
+    "url": "https://github.com/arpadvas/ngx-autocomplete/issues"
+  },
+  "homepage": "https://github.com/arpadvas/ngx-autocomplete",
+  "keywords": [
+    "angular",
+    "javascript",
+    "typescript",
+    "typeahead",
+    "autocomplete",
+    "ui component"
+  ],
   "private": false,
   "dependencies": {
     "@angular-devkit/core": "^0.3.1",
