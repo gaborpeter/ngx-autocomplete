@@ -18,7 +18,7 @@ npm install @avas/ngx-autocomplete --save
 
 ## Inputs
 
-* **type**<_string_> - The input field type (text be default).
+* **type**<_string_> - The input field type (text by default).
 * **placeholder**<_string_> - The input field placeholder.
 * **apiString**<_string_> - API URL to be called.
 * **paramName**<_string_> - The keyword string will be attached as query string parameter with the given name.
@@ -26,6 +26,10 @@ npm install @avas/ngx-autocomplete --save
 * **payloadPropName**<_string_> - The property name of the response payload. If not provided then the response will be handled as the payload itself.
 * **staticDataSource**<_any[]_> - Array of string or objects. If second then suggestionPropName must be provided.
 * **control**<FormControl> - The ngx-autocomplete selector must be part of a reactive form.
+
+## Inputs
+
+* **selected**<_string_> - Emits an event once the item is selected.
 
 ## Usage
 
@@ -100,7 +104,8 @@ Add seletor with static array source:
   <ngx-autocomplete formControlName="keyword"
                     [control]="myForm.controls.keyword"
                     [staticDataSource]="weekdays"
-                    suggestionPropName="name"></ngx-autocomplete>
+                    suggestionPropName="name"
+                    (selected)="onSelected($event)"></ngx-autocomplete>
 </form>
 ```
 
@@ -114,7 +119,8 @@ Add seletor with API call:
                     apiString="http://localhost:3000/api/ascent/queryascents"
                     paramName="keyword"
                     payloadPropName="payload"
-                    suggestionPropName="name"></ngx-autocomplete>
+                    suggestionPropName="name"
+                    (selected)="onSelected($event)"></ngx-autocomplete>
 </form>
 ```
 
