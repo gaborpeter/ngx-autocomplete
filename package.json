@@ -1,6 +1,6 @@
 {
   "name": "@avas/ngx-autocomplete",
-  "version": "0.1.4",
+  "version": "1.0.0",
   "license": "MIT",
   "description": "Autocomplete component for Angular4+",
   "scripts": {

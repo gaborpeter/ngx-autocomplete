@@ -1,14 +1,19 @@
 # @avas/NgxAutocomplete
 
-Warning: This project is under development so is not ready for production.
+Autocomplete component for Angular4+
 
 ## Feautures
 
 HTTPClient support.
+
 Reactive form support.
+
 Static array and API call support.
+
 Highlight matches (case insensitive).
+
 Keyboard support.
+
 AOT compatible.
 
 ## Installation

@@ -20,6 +20,14 @@
     border-style: none;
     cursor:pointer;
     padding: 5px;
+
+    &:hover {
+        background-color: #f2f2f2;
+    }
+
+    &.active {
+        background-color: #e6e6e6;
+    }
 }
 
 .highlighted {

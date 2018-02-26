@@ -4,10 +4,11 @@
           (keyup)="onChange($event, input.value)"
           autocomplete="off"
           #input/>
-  <div class="ngx-autocomplete-suggestions" *ngIf="(suggestions$ | async)?.length > 0">
+  <div class="ngx-autocomplete-suggestions" *ngIf="suggestions?.length > 0">
       <ul class="ngx-autocomplete-suggestions-list">
-        <li class="ngx-autocomplete-suggestions-list-item" 
-            *ngFor="let suggestion of suggestions$ | async" 
+        <li class="ngx-autocomplete-suggestions-list-item"
+            [ngClass]='{ "active" : i === activeSuggestionIndex }'
+            *ngFor="let suggestion of suggestions; let i = index" 
             (click)="fillTextBox(suggestion.full)">
             <span [ngClass]="getClass(elem[1].value, elem[1].class)" *ngFor="let elem of suggestion.splitted">{{elem[1].value}}</span>
         </li>

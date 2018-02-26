@@ -4,7 +4,8 @@
                     apiString="http://localhost:3000/api/ascent/queryascents"
                     paramName="keyword"
                     payloadPropName="payload"
-                    suggestionPropName="name"></ngx-autocomplete>
+                    suggestionPropName="name"
+                    (selected)="onSelected($event)"></ngx-autocomplete>
 </form> -->
 
 <form [formGroup]="form">

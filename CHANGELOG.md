@@ -1,3 +1,6 @@
+## v 1.0.0 (2018/02/26)
+* Added keyboard support
+
 ## v 0.1.2 (2018/02/23)
 * Update package.json
 
