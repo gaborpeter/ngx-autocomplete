@@ -4,9 +4,9 @@ Autocomplete component for Angular4+
 
 ## Feautures
 
-HTTPClient support.
+Works only with HTTPClient.
 
-Reactive form support.
+Works only with reactive forms.
 
 Static array and API call support.
 
@@ -26,8 +26,8 @@ npm install @avas/ngx-autocomplete --save
 * **type**<_string_> - The input field type (text by default).
 * **placeholder**<_string_> - The input field placeholder.
 * **apiString**<_string_> - API URL to be called.
-* **paramName**<_string_> - The keyword string will be attached as query string parameter with the given name.
-* **suggestionPropName**<_string_> - By default the response coming from the API is handled as an array of string. If suggestionPropName is provided then response will be handled as an array of objects and the given property will be mapped.
+* **paramName**<_string_> - The keyword string will be attached as query string parameter with the given name. For example "https://yourURL?paramName=keyword"
+* **suggestionPropName**<_string_> - By default the response coming from the API is handled as an array of string. If suggestionPropName is provided then response will be handled as an array of objects and the given property will be mapped on the suggestion list.
 * **payloadPropName**<_string_> - The property name of the response payload. If not provided then the response will be handled as the payload itself.
 * **staticDataSource**<_any[]_> - Array of string or objects. If second then suggestionPropName must be provided.
 * **control**<FormControl> - The ngx-autocomplete selector must be part of a reactive form.
